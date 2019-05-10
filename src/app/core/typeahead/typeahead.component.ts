@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
-import { of, EMPTY, Observable } from 'rxjs';
-import { map, tap, debounceTime, switchMap, mapTo, filter } from 'rxjs/operators';
+import { of, Observable } from 'rxjs';
+import { map, tap, debounceTime, switchMap } from 'rxjs/operators';
 
 export type TypeaheadSearchFunction = (searchString: string) => Observable<any[]>;
 export type TypeaheadResultFormatter = (result: any) => string;
@@ -46,7 +46,7 @@ export class TypeaheadComponent implements OnInit {
     ).subscribe();
   }
 
-  onInputBlur(event) {
+  onInputBlur() {
     if (this.userIsSelectingResult) {
       return;
     }
@@ -71,11 +71,11 @@ export class TypeaheadComponent implements OnInit {
     (this.typeaheadInput.nativeElement as HTMLInputElement).value = this.resultFormatter(result);
   }
 
-  onResultsMouseEnter($event) {
+  onResultsMouseEnter() {
     this.userIsSelectingResult = true;
   }
 
-  onResultsMouseLeave($event) {
+  onResultsMouseLeave() {
     this.userIsSelectingResult = false;
   }
 }
