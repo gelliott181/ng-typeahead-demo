@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { TypeaheadSearchFunction, TypeaheadResultFormatter } from './core/typeahead/typeahead.component';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,31 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'typeahead';
+  selectedResult;
+
+  typeaheadSourceData: any[] = [
+    {
+      id: '0',
+      name: 'Result 1'
+    },
+    {
+      id: '1',
+      name: 'Result 2'
+    }
+  ];
+
+  typeaheadSearchFunction(): TypeaheadSearchFunction {
+    const searchFn: TypeaheadSearchFunction = (searchString) => this.typeaheadSourceData.filter(element => element.name.includes(searchString));
+
+    return searchFn.bind(this);
+  }
+
+  typeaheadResultsFormatter(): TypeaheadResultFormatter {
+    const resultFormatterFn: TypeaheadResultFormatter = (result) => `${result.name}`;
+    return resultFormatterFn.bind(this);
+  }
+
+  onSelected(result: any) {
+    this.selectedResult = result;
+  }
 }
