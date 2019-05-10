@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { TypeaheadSearchFunction, TypeaheadResultFormatter } from './core/typeahead/typeahead.component';
+import { of } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -21,7 +22,7 @@ export class AppComponent {
   ];
 
   typeaheadSearchFunction(): TypeaheadSearchFunction {
-    const searchFn: TypeaheadSearchFunction = (searchString) => this.typeaheadSourceData.filter(element => element.name.includes(searchString));
+    const searchFn: TypeaheadSearchFunction = (searchString) => of(this.typeaheadSourceData.filter(element => element.name.includes(searchString)));
 
     return searchFn.bind(this);
   }

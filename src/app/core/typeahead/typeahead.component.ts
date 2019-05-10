@@ -1,8 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
-import { of, EMPTY } from 'rxjs';
+import { of, EMPTY, Observable } from 'rxjs';
 import { map, tap, debounceTime, switchMap, mapTo, filter } from 'rxjs/operators';
 
-export type TypeaheadSearchFunction = (searchString: string) => any[];
+export type TypeaheadSearchFunction = (searchString: string) => Observable<any[]>;
 export type TypeaheadResultFormatter = (result: any) => string;
 
 @Component({
@@ -23,7 +23,7 @@ export class TypeaheadComponent implements OnInit {
   @Input() debounceTime: number = 333;
   @Input() noResultsFoundMessage: string = 'No results found.';
 
-  @Input() searchFunction: TypeaheadSearchFunction = (searchString) => [];
+  @Input() searchFunction: TypeaheadSearchFunction = (searchString) => of([]);
   @Input() resultFormatter: TypeaheadResultFormatter = (result) => result;
 
   constructor() { }
@@ -56,7 +56,7 @@ export class TypeaheadComponent implements OnInit {
 
   suggest(searchString: string) {
     return of(searchString).pipe(
-      map(searchString => (!searchString || searchString.length === 0) ? [] : this.searchFunction(searchString)),
+      switchMap(searchString => (!searchString || searchString.length === 0) ? of([]) : this.searchFunction(searchString)),
       tap(results => this.displayResults = results.length > 0),
       tap(results => this.results = results)
     );
