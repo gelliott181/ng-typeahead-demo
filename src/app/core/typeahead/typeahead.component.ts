@@ -66,6 +66,7 @@ export class TypeaheadComponent implements OnInit {
     this.selected.emit(result);
     this.userHasEnteredSearchString = false;
     this.userIsSelectingResult = false;
+    this.displayResults = false;
     this.results = [];
 
     (this.typeaheadInput.nativeElement as HTMLInputElement).value = this.resultFormatter(result);

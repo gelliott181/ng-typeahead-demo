@@ -8,6 +8,8 @@ import { of } from 'rxjs';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  typeaheadSearchFunction: TypeaheadSearchFunction = (searchString) => of(this.typeaheadSourceData.filter(element => element.name.includes(searchString)));
+  typeaheadResultsFormatter: TypeaheadResultFormatter = (result) => `${result.name}`;
   selectedResult;
 
   typeaheadSourceData: any[] = [
@@ -20,17 +22,6 @@ export class AppComponent {
       name: 'Result 2'
     }
   ];
-
-  typeaheadSearchFunction(): TypeaheadSearchFunction {
-    const searchFn: TypeaheadSearchFunction = (searchString) => of(this.typeaheadSourceData.filter(element => element.name.includes(searchString)));
-
-    return searchFn.bind(this);
-  }
-
-  typeaheadResultsFormatter(): TypeaheadResultFormatter {
-    const resultFormatterFn: TypeaheadResultFormatter = (result) => `${result.name}`;
-    return resultFormatterFn.bind(this);
-  }
 
   onSelected(result: any) {
     this.selectedResult = result;

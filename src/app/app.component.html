@@ -1,5 +1,5 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<app-typeahead (selected)="onSelected($event)" [searchFunction]="typeaheadSearchFunction()" [resultFormatter]="typeaheadResultsFormatter()"></app-typeahead>
+<app-typeahead (selected)="onSelected($event)" [searchFunction]="typeaheadSearchFunction" [resultFormatter]="typeaheadResultsFormatter"></app-typeahead>
 <div *ngIf="!!selectedResult">
   <label>Selected Result</label>
   <p>Id: {{ selectedResult.id }}</p>

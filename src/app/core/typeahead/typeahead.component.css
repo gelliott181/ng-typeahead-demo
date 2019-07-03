@@ -1,0 +1,28 @@
+.typeahead-container {
+  position: relative;
+  border: 1px solid black;
+
+  overflow: visible;
+}
+
+.typeahead-container input {
+  box-sizing: border-box;
+  width: 100%;
+
+}
+
+.typeahead-container .results-list {
+  position: absolute;
+  top: 100%;
+
+  background-color: #FAFAFA;
+  box-shadow: 0 1px 2px -1px #323232;
+
+  list-style: none;
+  padding: 0.5rem;
+}
+
+.results-list li p {
+  margin: 0;
+  padding: 0;
+}

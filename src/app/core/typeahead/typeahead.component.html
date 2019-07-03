@@ -1,7 +1,10 @@
-<input type="text" (keyup)="onInputKeyup($event)" (focus)="onInputFocus($event)" (blur)="onInputBlur($event)" #typeaheadInput />
-<ul class="results-list" (mouseenter)="onResultsMouseEnter($event)" (mouseleave)="onResultsMouseLeave($event)" *ngIf="displayResults">
-  <li *ngIf="results.length === 0 && userHasEnteredSearchString">{{ noResultsFoundMessage }}</li>
-  <li *ngFor="let result of results" (click)="onResultSelected(result)">
-    <p>{{ resultFormatter(result) }}</p>
-  </li>
-</ul>
+<div class="typeahead-container">
+  <input type="text" (keyup)="onInputKeyup($event)" (focus)="onInputFocus($event)" (blur)="onInputBlur($event)" #typeaheadInput />
+  <ul class="results-list" (mouseenter)="onResultsMouseEnter($event)" (mouseleave)="onResultsMouseLeave($event)"
+    *ngIf="displayResults">
+    <li *ngIf="results.length === 0 && userHasEnteredSearchString">{{ noResultsFoundMessage }}</li>
+    <li *ngFor="let result of results" (click)="onResultSelected(result)">
+      <p>{{ resultFormatter(result) }}</p>
+    </li>
+  </ul>
+</div>
