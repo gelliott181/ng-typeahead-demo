@@ -1,5 +1,5 @@
 <div class="typeahead-container">
-  <input type="text" (keyup)="onInputKeyup($event)" (focus)="onInputFocus($event)" (blur)="onInputBlur($event)" #typeaheadInput />
+  <input type="text" (keyup)="onInputKeyup($event)" (focus)="onInputFocus($event)" (blur)="onInputBlur()" #typeaheadInput />
   <ul class="results-list" (mouseenter)="onResultsMouseEnter($event)" (mouseleave)="onResultsMouseLeave($event)"
     *ngIf="displayResults">
     <li *ngIf="results.length === 0 && userHasEnteredSearchString">{{ noResultsFoundMessage }}</li>
