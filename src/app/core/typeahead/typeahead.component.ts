@@ -16,7 +16,7 @@ export class TypeaheadComponent implements OnInit {
   displayResults: boolean = false;
   results: any[] = [];
 
-  @ViewChild('typeaheadInput') typeaheadInput: ElementRef;
+  @ViewChild('typeaheadInput', { static: true }) typeaheadInput: ElementRef;
 
   @Output() selected: EventEmitter<any> = new EventEmitter<any>();
 
