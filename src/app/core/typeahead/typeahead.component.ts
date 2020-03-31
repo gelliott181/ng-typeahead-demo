@@ -56,7 +56,8 @@ export class TypeaheadComponent implements OnInit {
 
   suggest(searchString: string) {
     return of(searchString).pipe(
-      switchMap(searchString => (!searchString || searchString.length === 0) ? of([]) : this.searchFunction(searchString)),
+      map(searchString => searchString.trim()),
+      switchMap(searchString => (typeof searchString !== 'string' || searchString.length === 0) ? of([]) : this.searchFunction(searchString)),
       tap(results => this.displayResults = results.length > 0),
       tap(results => this.results = results)
     );
