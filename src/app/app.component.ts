@@ -8,7 +8,7 @@ import { of } from 'rxjs';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  typeaheadSearchFunction: TypeaheadSearchFunction = (searchString) => of(this.typeaheadSourceData.filter(element => element.name.includes(searchString)));
+  typeaheadSearchFunction: TypeaheadSearchFunction = (searchString) => of(this.typeaheadSourceData.filter(element => element.name.toLocaleLowerCase().includes(searchString.toLocaleLowerCase())));
   typeaheadResultsFormatter: TypeaheadResultFormatter = (result) => `${result.name}`;
   selectedResult;
 
